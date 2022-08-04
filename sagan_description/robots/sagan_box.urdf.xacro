@@ -2,6 +2,7 @@
 
 <robot name="sagan_box" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+	<xacro:arg name="gazebo" default="true"/>
 	
 	<!-- Include Sagan Parameters -->
 	<xacro:include filename="$(find sagan_description)/urdf/common.xacro"/>
@@ -16,25 +17,25 @@
 	<!-- Robot Definition -->
 
     <!-- Chassis -->
-	<xacro:box_chassis name="base_link"/>
+	<xacro:box_chassis name="base_link" gazebo="$(arg gazebo)"/>
 
 	<!-- FL Wheel -->
-	<xacro:cylinder_wheel wheel_prefix="fl">
+	<xacro:cylinder_wheel wheel_prefix="fl" gazebo="$(arg gazebo)">
 		<origin xyz="${wheel_x_pos} ${wheel_y_pos} ${wheel_z_pos}" rpy="${-PI/2} 0 0"/>
 	</xacro:cylinder_wheel>
 
 	<!-- FR Wheel -->
-	<xacro:cylinder_wheel wheel_prefix="fr">
+	<xacro:cylinder_wheel wheel_prefix="fr" gazebo="$(arg gazebo)">
 		<origin xyz="${wheel_x_pos} ${-wheel_y_pos} ${wheel_z_pos}" rpy="${PI/2} 0 0"/>
 	</xacro:cylinder_wheel>
 
 	<!-- BL Wheel -->
-	<xacro:cylinder_wheel wheel_prefix="bl">
+	<xacro:cylinder_wheel wheel_prefix="bl" gazebo="$(arg gazebo)">
 		<origin xyz="${-wheel_x_pos} ${wheel_y_pos} ${wheel_z_pos}" rpy="${-PI/2} 0 0"/>
 	</xacro:cylinder_wheel>
 
 	<!-- BR Wheel -->
-	<xacro:cylinder_wheel wheel_prefix="br">
+	<xacro:cylinder_wheel wheel_prefix="br" gazebo="$(arg gazebo)">
 		<origin xyz="${-wheel_x_pos} ${-wheel_y_pos} ${wheel_z_pos}" rpy="${PI/2} 0 0"/>
 	</xacro:cylinder_wheel>
 

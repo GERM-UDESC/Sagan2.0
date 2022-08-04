@@ -14,17 +14,36 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
 
     # Declare Launch file Arguments
+    launch_args = []
+
     pause = LaunchConfiguration('pause')
     pause_arg = DeclareLaunchArgument(
         'pause',
         default_value='false'
     )
+    launch_args.append(pause_arg)
+
+    pos_x = LaunchConfiguration('x')
+    pos_x_arg = DeclareLaunchArgument(
+        'x',
+        default_value='0.0'
+    )
+    launch_args.append(pos_x_arg)
+
+    pos_y = LaunchConfiguration('y')
+    pos_y_arg = DeclareLaunchArgument(
+        'y',
+        default_value='0.0'
+    )
+    launch_args.append(pos_y_arg)
 
     pos_z = LaunchConfiguration('z')
     pos_z_arg = DeclareLaunchArgument(
         'z',
         default_value='0.15'
     )
+    launch_args.append(pos_z_arg)
+
 
     # Load World file
     world_file = PathJoinSubstitution(
@@ -43,20 +62,26 @@ def generate_launch_description():
     # Load Robot Description
     sagan_box_desc = IncludeLaunchDescription(
                             PythonLaunchDescriptionSource([os.path.join(
-                                get_package_share_directory('sagan_description'), 'launch'), '/sagan_box.launch.py'])
+                                get_package_share_directory('sagan_description'), 'launch'), '/sagan_box.launch.py']),
+                                launch_arguments = {'gazebo': 'true', }.items(),
                         )
 
     # Spawn Robot
     spawn_entity = Node(package='gazebo_ros', executable='spawn_entity.py',
                         arguments=['-topic', 'robot_description',
                                    '-entity', 'sagan',
+                                   '-x', pos_x,
+                                   '-y', pos_y,
                                    '-z', pos_z],
                         output='screen')
 
-    return LaunchDescription([
-        pause_arg,
-        pos_z_arg,
-        gazebo,
-        sagan_box_desc,
-        spawn_entity,
-    ])
+    return LaunchDescription(
+        launch_args
+        +
+        [
+            pause_arg,
+            gazebo,
+            sagan_box_desc,
+            spawn_entity
+        ]
+    )

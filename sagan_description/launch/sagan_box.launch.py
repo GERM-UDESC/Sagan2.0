@@ -3,24 +3,30 @@ import os
 from ament_index_python.packages import get_package_share_directory
 
 from launch import LaunchDescription
+from launch.actions import OpaqueFunction, DeclareLaunchArgument
+from launch.substitutions import Command, FindExecutable, LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
+from launch_ros.substitutions import FindPackageShare
 
-import xacro
 
+def launch_setup(context, *args, **kwargs):
 
-def generate_launch_description():
-    
-    # Load URDF
-    robot_description_path = os.path.join(
-        get_package_share_directory('sagan_description'))
+    # Declare Launch file Arguments
+    gazebo = LaunchConfiguration('gazebo')
 
-    xacro_file = os.path.join(robot_description_path,
-                              'robots',
-                              'sagan_box.urdf.xacro')
-
-    doc = xacro.parse(open(xacro_file))
-    xacro.process_doc(doc)
-    robot_description = {'robot_description': doc.toxml()}
+    # Load URDF with Xacro
+    robot_description_content = Command(
+        [
+            PathJoinSubstitution([FindExecutable(name='xacro')]),
+            " ",
+            PathJoinSubstitution([FindPackageShare('sagan_description'), 'robots', 'sagan_box.urdf.xacro']),
+            " ",
+            "gazebo:=",
+            gazebo,
+            " ",
+        ]
+    )
+    robot_description = {"robot_description": robot_description_content}
 
     # Robot State Publisher
     node_robot_state_publisher = Node(
@@ -30,6 +36,19 @@ def generate_launch_description():
         parameters=[robot_description]
     )
 
-    return LaunchDescription([
+    return [
         node_robot_state_publisher
+    ]
+
+
+def generate_launch_description():
+
+    gazebo_arg = DeclareLaunchArgument(
+        'gazebo',
+        default_value='True'
+    )
+
+    return LaunchDescription([
+        gazebo_arg,
+        OpaqueFunction(function=launch_setup)
     ])

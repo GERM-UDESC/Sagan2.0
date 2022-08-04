@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<xacro:macro name="cylinder_wheel_gazebo" params="wheel_prefix">
+	
+		<!-- Wheel Link -->
+		<gazebo reference="${wheel_prefix}_wheel_link">
+			<material>Gazebo/FlatBlack</material>
+		</gazebo>
+
+		<!-- Wheel Joint -->
+		<gazebo reference="${wheel_prefix}_wheel_joint">
+			<provideFeedback>true</provideFeedback>
+		</gazebo>
+		
+	</xacro:macro>
+
+</robot>

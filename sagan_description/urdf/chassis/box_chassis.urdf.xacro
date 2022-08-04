@@ -2,8 +2,11 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+	<!-- Gazebo Parameters -->
+	<xacro:include filename="$(find sagan_description)/urdf/chassis/box_chassis.gazebo.xacro"/>
+
 	<!-- Box Chassis -->
-	<xacro:macro name="box_chassis" params="name">
+	<xacro:macro name="box_chassis" params="name gazebo">
 		
 		<link name="${name}">
 
@@ -19,6 +22,9 @@
 				<geometry>
 					<box size="${chassis_x_size} ${chassis_y_size} ${chassis_z_size}"/>
 				</geometry>
+	      		<material name="">
+    				<color rgba="${175/255} ${175/255} ${175/255} 1.0"/>
+  				</material>
 			</visual>
 
 			<collision>
@@ -30,7 +36,10 @@
 
 		</link>
 
-		
+		<xacro:if value="${gazebo}">
+			<xacro:box_chassis_gazebo name="${name}" />
+		</xacro:if>
+
 	</xacro:macro>
 
 </robot>
