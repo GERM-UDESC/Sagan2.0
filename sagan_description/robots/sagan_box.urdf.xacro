@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+<robot name="sagan_box" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	
+	<!-- Include Sagan Parameters -->
+	<xacro:include filename="$(find sagan_description)/urdf/common.xacro"/>
+	
+	<!-- Include Chassis Description -->
+	<xacro:include filename="$(find sagan_description)/urdf/chassis/box_chassis.urdf.xacro"/>
+	
+	<!-- Include Wheel Description -->
+	<xacro:include filename="$(find sagan_description)/urdf/wheel/cylinder_wheel.urdf.xacro"/>
+
+
+	<!-- Robot Definition -->
+
+    <!-- Chassis -->
+	<xacro:box_chassis name="base_link"/>
+
+	<!-- FL Wheel -->
+	<xacro:cylinder_wheel wheel_prefix="fl">
+		<origin xyz="${wheel_x_pos} ${wheel_y_pos} ${wheel_z_pos}" rpy="${-PI/2} 0 0"/>
+	</xacro:cylinder_wheel>
+
+	<!-- FR Wheel -->
+	<xacro:cylinder_wheel wheel_prefix="fr">
+		<origin xyz="${wheel_x_pos} ${-wheel_y_pos} ${wheel_z_pos}" rpy="${PI/2} 0 0"/>
+	</xacro:cylinder_wheel>
+
+	<!-- BL Wheel -->
+	<xacro:cylinder_wheel wheel_prefix="bl">
+		<origin xyz="${-wheel_x_pos} ${wheel_y_pos} ${wheel_z_pos}" rpy="${-PI/2} 0 0"/>
+	</xacro:cylinder_wheel>
+
+	<!-- BR Wheel -->
+	<xacro:cylinder_wheel wheel_prefix="br">
+		<origin xyz="${-wheel_x_pos} ${-wheel_y_pos} ${wheel_z_pos}" rpy="${PI/2} 0 0"/>
+	</xacro:cylinder_wheel>
+
+</robot>
