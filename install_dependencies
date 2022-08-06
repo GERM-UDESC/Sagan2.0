@@ -15,6 +15,9 @@ apt-get install -y ros-${ROS_DISTRO}-gazebo-ros-pkgs
 apt-get install -y ros-${ROS_DISTRO}-ros2-control
 apt-get install -y ros-${ROS_DISTRO}-ros2-controllers
 apt-get install -y ros-${ROS_DISTRO}-gazebo-ros2-control
+apt-get install -y ros-${ROS_DISTRO}-controller-manager
+apt-get install -y ros-${ROS_DISTRO}-joint-state-broadcaster
+apt-get install -y ros-${ROS_DISTRO}-diff-drive-controller
 
 # ROS2 Navigation
 apt-get install -y ros-${ROS_DISTRO}-navigation2

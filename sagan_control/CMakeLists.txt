@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(sagan_description)
+project(sagan_control)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -7,16 +7,13 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-find_package(urdf REQUIRED)
-find_package(xacro REQUIRED)
+find_package(controller_manager REQUIRED)
+find_package(joint_state_broadcaster REQUIRED)
+find_package(diff_drive_controller REQUIRED)
 
 install(DIRECTORY
-  gazebo
+  config
   launch
-  meshes
-  robots
-  ros2_control
-  urdf
   DESTINATION share/${PROJECT_NAME}
 )
 
