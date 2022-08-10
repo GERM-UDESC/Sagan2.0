@@ -12,7 +12,7 @@ from launch_ros.substitutions import FindPackageShare
 def launch_setup(context, *args, **kwargs):
 
     # Declare Launch file Arguments
-    gazebo = LaunchConfiguration('gazebo')
+    sim_gazebo = LaunchConfiguration('sim_gazebo')
 
     # Load URDF with Xacro
     robot_description_content = Command(
@@ -21,8 +21,8 @@ def launch_setup(context, *args, **kwargs):
             " ",
             PathJoinSubstitution([FindPackageShare('sagan_description'), 'robots', 'sagan_box.urdf.xacro']),
             " ",
-            "gazebo:=",
-            gazebo,
+            "sim_gazebo:=",
+            sim_gazebo,
             " ",
         ]
     )
@@ -44,7 +44,7 @@ def launch_setup(context, *args, **kwargs):
 def generate_launch_description():
 
     gazebo_arg = DeclareLaunchArgument(
-        'gazebo',
+        'sim_gazebo',
         default_value='True'
     )
 

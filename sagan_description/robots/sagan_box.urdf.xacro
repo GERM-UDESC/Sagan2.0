@@ -17,40 +17,42 @@
 	<xacro:include filename="$(find sagan_description)/ros2_control/sagan_system.ros2_control.xacro"/>
 
 	<!-- Include Gazebo Parameters -->
-	<xacro:include filename="$(find sagan_description)/gazebo/sagan_box.gazebo.xacro"/>
-
+	<xacro:if value="$(arg sim_gazebo)">
+		<xacro:include filename="$(find sagan_description)/gazebo/sagan_box.gazebo.xacro"/>
+	</xacro:if>
 
 	<!-- Robot Definition -->
 
     <!-- Chassis -->
-	<xacro:box_chassis name="base_link" gazebo="$(arg gazebo)"/>
+	<xacro:box_chassis name="base_link" sim_gazebo="$(arg sim_gazebo)"/>
 
 	<!-- FL Wheel -->
-	<xacro:cylinder_wheel wheel_prefix="fl" gazebo="$(arg gazebo)">
+	<xacro:cylinder_wheel wheel_prefix="fl" sim_gazebo="$(arg sim_gazebo)">
 		<origin xyz="${wheel_x_pos} ${wheel_y_pos} ${wheel_z_pos}" rpy="${PI/2} 0 0"/>
 	</xacro:cylinder_wheel>
 
 	<!-- FR Wheel -->
-	<xacro:cylinder_wheel wheel_prefix="fr" gazebo="$(arg gazebo)">
+	<xacro:cylinder_wheel wheel_prefix="fr" sim_gazebo="$(arg sim_gazebo)">
 		<origin xyz="${wheel_x_pos} ${-wheel_y_pos} ${wheel_z_pos}" rpy="${PI/2} 0 0"/>
 	</xacro:cylinder_wheel>
 
 	<!-- BL Wheel -->
-	<xacro:cylinder_wheel wheel_prefix="bl" gazebo="$(arg gazebo)">
+	<xacro:cylinder_wheel wheel_prefix="bl" sim_gazebo="$(arg sim_gazebo)">
 		<origin xyz="${-wheel_x_pos} ${wheel_y_pos} ${wheel_z_pos}" rpy="${PI/2} 0 0"/>
 	</xacro:cylinder_wheel>
 
 	<!-- BR Wheel -->
-	<xacro:cylinder_wheel wheel_prefix="br" gazebo="$(arg gazebo)">
+	<xacro:cylinder_wheel wheel_prefix="br" sim_gazebo="$(arg sim_gazebo)">
 		<origin xyz="${-wheel_x_pos} ${-wheel_y_pos} ${wheel_z_pos}" rpy="${PI/2} 0 0"/>
 	</xacro:cylinder_wheel>
 
 
 	<!-- ROS2 Control Componentes -->
-	<xacro:sagan_system name="sagan_system_interfaces" gazebo="$(arg gazebo)"/>
+	<xacro:sagan_system name="sagan_system_interfaces" sim_gazebo="$(arg sim_gazebo)"/>
 
 	<!-- Gazebo -->
-	<xacro:sagan_gazebo name="sagan_gazebo" />
-
+	<xacro:if value="$(arg sim_gazebo)">
+		<xacro:sagan_gazebo name="sagan_gazebo" />
+	</xacro:if>
 
 </robot>

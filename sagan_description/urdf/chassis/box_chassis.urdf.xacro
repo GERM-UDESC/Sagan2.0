@@ -6,7 +6,7 @@
 	<xacro:include filename="$(find sagan_description)/urdf/chassis/box_chassis.gazebo.xacro"/>
 
 	<!-- Box Chassis -->
-	<xacro:macro name="box_chassis" params="name gazebo">
+	<xacro:macro name="box_chassis" params="name sim_gazebo">
 		
 		<link name="${name}">
 
@@ -36,7 +36,7 @@
 
 		</link>
 
-		<xacro:if value="${gazebo}">
+		<xacro:if value="${sim_gazebo}">
 			<xacro:box_chassis_gazebo name="${name}" />
 		</xacro:if>
 

@@ -6,7 +6,7 @@
 	<xacro:include filename="$(find sagan_description)/urdf/wheel/cylinder_wheel.gazebo.xacro"/>
 
 	<!-- Cylinder Wheel -->
-	<xacro:macro name="cylinder_wheel" params="wheel_prefix *origin gazebo">
+	<xacro:macro name="cylinder_wheel" params="wheel_prefix *origin sim_gazebo">
 
 		<link name="${wheel_prefix}_wheel_link">
 
@@ -45,7 +45,7 @@
 
 		</joint>
 
-		<xacro:if value="${gazebo}">
+		<xacro:if value="${sim_gazebo}">
 			<xacro:cylinder_wheel_gazebo wheel_prefix="${wheel_prefix}" />
 		</xacro:if>
 		

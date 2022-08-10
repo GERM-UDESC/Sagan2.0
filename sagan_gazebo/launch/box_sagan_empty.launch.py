@@ -63,7 +63,7 @@ def generate_launch_description():
     sagan_box_desc = IncludeLaunchDescription(
                             PythonLaunchDescriptionSource([os.path.join(
                                 get_package_share_directory('sagan_description'), 'launch'), '/sagan_box.launch.py']),
-                                launch_arguments = {'gazebo': 'true', }.items(),
+                                launch_arguments = {'sim_gazebo': 'true', }.items(),
                         )
 
     # Spawn Robot

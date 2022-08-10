@@ -2,11 +2,11 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
 
-    <xacro:macro name="sagan_system" params="name gazebo">
+    <xacro:macro name="sagan_system" params="name sim_gazebo">
 
         <ros2_control name="GazeboSystem" type="system">
 
-            <xacro:if value="${gazebo}">
+            <xacro:if value="${sim_gazebo}">
                 <hardware>
                     <plugin>gazebo_ros2_control/GazeboSystem</plugin>
                 </hardware>
