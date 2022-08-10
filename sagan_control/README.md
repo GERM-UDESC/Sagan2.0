@@ -18,3 +18,8 @@ Launch controllers:
 ```
 ros2 launch sagan_control sagan_diff_drive.launch.py
 ```
+
+Use teleop if you want to use the keyboard to control the robot:
+```
+ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args --remap cmd_vel:=sagan_diff_drive_controller/cmd_vel_unstamped
+```
