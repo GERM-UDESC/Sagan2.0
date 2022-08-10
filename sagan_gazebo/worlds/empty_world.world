@@ -17,5 +17,9 @@
             <real_time_update_rate>1000</real_time_update_rate>
         </physics>
 
+        <plugin filename="libgazebo_ros_state.so" name="gazebo_ros2_state">
+            <update_rate>50.0</update_rate>
+        </plugin>
+
     </world>
 </sdf>

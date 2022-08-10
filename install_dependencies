@@ -4,7 +4,8 @@ echo "Installing requirements for Sagan 2.0 ...."
 ROS_DISTRO=humble
 
 # Update Package List
-apt-get update  
+apt-get update
+apt-get -y upgrade
 
 apt-get install -y ros-${ROS_DISTRO}-xacro
 

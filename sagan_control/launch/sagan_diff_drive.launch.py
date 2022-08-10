@@ -22,7 +22,16 @@ def generate_launch_description():
         arguments=["sagan_diff_drive_controller", "--controller-manager", "/controller_manager"],
     )
 
+    rviz2 = Node(
+        package='rviz2',
+        namespace='',
+        executable='rviz2',
+        name='rviz2',
+        arguments=['-d' + os.path.join(get_package_share_directory('sagan_control'), 'rviz', 'odometry.rviz')],
+    )
+
     return LaunchDescription([
         joint_state_broadcaster_spawner,
         diff_drive_controller_spawner,
+        rviz2,
     ])

@@ -14,6 +14,7 @@ find_package(diff_drive_controller REQUIRED)
 install(DIRECTORY
   config
   launch
+  rviz
   DESTINATION share/${PROJECT_NAME}
 )
 
