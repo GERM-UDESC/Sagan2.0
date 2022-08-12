@@ -7,13 +7,11 @@
 		<!-- Wheel Link -->
 		<gazebo reference="${wheel_prefix}_wheel_link">
 
-			<mu1>10</mu1>
-			<mu2>10</mu2>
-			<kp>500000.0</kp>
-			<kd>10.0</kd>
-			<minDepth>0.001</minDepth>
-			<maxVel>0.1</maxVel>
-			<fdir1>1 0 0</fdir1>
+			<mu1 value="2.0"/>
+			<mu2 value="0.1"/>
+			<kp value="10000000.0" />
+			<kd value="1.0" />
+			<fdir1 value="1 0 0"/>
 
 			<material>Gazebo/FlatBlack</material>
 		</gazebo>

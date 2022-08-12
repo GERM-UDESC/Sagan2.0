@@ -9,7 +9,7 @@
 	<xacro:property name="chassis_y_com" value="0.0"/>
 	<xacro:property name="chassis_z_com" value="0.0"/>
 	
-	<xacro:property name="chassis_mass" value="10.0"/>
+	<xacro:property name="chassis_mass" value="46.034"/>
 	
 	<xacro:property name="chassis_ixx" value="0.6022"/>
 	<xacro:property name="chassis_iyy" value="1.7386"/>
@@ -27,11 +27,11 @@
 	<xacro:property name="wheel_y_com" value="0.0"/>
 	<xacro:property name="wheel_z_com" value="0.0"/>
 	
-	<xacro:property name="wheel_mass" value="0.5"/>
+	<xacro:property name="wheel_mass" value="2.637"/>
 	
-	<xacro:property name="wheel_ixx" value="0.01"/>
-	<xacro:property name="wheel_iyy" value="0.01"/>
-	<xacro:property name="wheel_izz" value="0.01"/>
+	<xacro:property name="wheel_ixx" value="0.02467"/>
+	<xacro:property name="wheel_iyy" value="0.02467"/>
+	<xacro:property name="wheel_izz" value="0.04411"/>
 	<xacro:property name="wheel_ixy" value="0.0"/>
 	<xacro:property name="wheel_ixz" value="0.0"/>
 	<xacro:property name="wheel_iyz" value="0.0"/>
